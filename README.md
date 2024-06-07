@@ -59,19 +59,19 @@ A feature-rich Nuxt 3 starter template that integrates Firebase for backend func
 ## Project Structure
 
 ```
-|-
-├── components
-├── assets
-├── layouts
-├── pages
-├── plugins
-├── public
-├── static
-├── store
-├── nuxt.config.ts
-├── package.json
-├── tailwind.config.js
-└── README.md
+|--src
+   ├── components
+   ├── assets
+   ├── layouts
+   ├── pages
+   ├── plugins
+   ├── public
+   ├── static
+   ├── store
+   ├── nuxt.config.ts
+   ├── package.json
+   ├── tailwind.config.js
+   └── README.md
 ```
 
 
