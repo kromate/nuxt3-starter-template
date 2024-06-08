@@ -1,17 +1,52 @@
 {
   "name": "nuxt-app",
   "private": true,
-  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "lint": "eslint ./src --ext .ts,.vue --fix",
+    "generate-icon-name-enum": "node bin/generate-icon-name-enum.js",
+    "generate-sprite": "svgstore -o ./src/assets/icons/sprite.svg ./src/assets/icons/source/*.svg",
+    "prestart": "yarn generate-sprite && yarn generate-icon-name-enum",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "deploy": "firebase deploy --only functions"
   },
   "dependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.7",
+    "firebase": "^9.12.1",
+    "firebase-admin": "^11.2.1",
+    "firebase-functions": "^4.1.0",
+    "gsap": "^3.12.2",
+    "lucide-vue-next": "^0.379.0",
     "nuxt": "^3.11.2",
+    "radix-vue": "^1.8.2",
+    "sass": "^1.69.5",
+    "uuid": "^9.0.0",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^0.6.7",
+    "@nuxt/postcss8": "^1.1.3",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "@nuxtjs/tailwindcss": "^6.1.3",
+    "@types/google.maps": "^3.53.4",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "autoprefixer": "^10.4.8",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-nuxt": "^3.2.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-unused-imports": "^4.0.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "prettier-plugin-tailwindcss": "^0.1.10",
+    "tailwindcss": "^3.1.7",
+    "typescript": "^4.6.4",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }

@@ -1,0 +1,63 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+  font-family: 'Outfit', sans-serif;
+}
+/* 
+.inter {
+  font-family: 'Inter', sans-serif;
+} */
+
+
+html,
+body {
+  @apply overflow-x-hidden;
+  scroll-behavior: smooth;
+  scroll-padding: 12rem;
+  background: var(--light);
+}
+
+select,
+input[type='number'],
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+}
+
+
+
+
+* {
+  scrollbar-color: var(--light_primary);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light_primary);
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8885;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8886;
+}
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
