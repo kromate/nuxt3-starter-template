@@ -3,8 +3,8 @@ import { useUser } from '@/composables/auth/user'
 export default function isNotAuthenticated(route: any) {
 	if (process.client) {
 			hasReferer()
-	if (useUser().isLoggedIn.value && route.path !== '/main/business') {
-		return navigateTo('/main/business')
+	if (useUser().isLoggedIn.value && route.path !== '/dashboard') {
+		return navigateTo('/dashboard')
 	}
 	}
 }

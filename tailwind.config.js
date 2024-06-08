@@ -1,6 +1,6 @@
 module.exports = {
 	content: [
-		'./src/components/**/*.{js,vue,ts}',
+		'./src/**/*.{js,vue,ts}',
 		'./src/layouts/**/*.vue',
 		'./src/pages/**/*.vue'
 	],
@@ -17,7 +17,9 @@ module.exports = {
 		extend: {
 			colors: {
 				primary: 'var(--primary)',
-				secondary: 'var(--secondary)'
+				secondary: 'var(--secondary)',
+				light: 'var(--light)',
+				dark: 'var(--dark)'
 			}
 		}
 	},

@@ -3,7 +3,7 @@
 	<div class="relative overflow-hidden  w-full  shadow-xl  p-4 py-5 rounded-md box border-[1.5px]  bg-light" :class="[`border-${COLOR}`]">
 		<div :style="`width:${BORDER_WIDTH}%`" :class="[`bg-${COLOR} h-1  absolute  bottom-0 left-0 transite transition-all !duration-[80ms]`]" />
 		<span @click="$emit('closeAlert', id)">
-			<Icon
+			<X
 				name="close"
 				class="text-dark w-5 absolute  right-2 top-2 cursor-pointer  border-[1.5px] border-dark  rounded-md"
 			/>
@@ -26,6 +26,7 @@
 </template>
 
 <script lang="ts" setup>
+import { X } from 'lucide-vue-next'
 import { is_dev } from '@/composables/utils/system'
 
 const emit = defineEmits(['closeAlert'])
@@ -109,7 +110,7 @@ const COLOR = computed({
 
 <style scoped>
 .generator_tw{
-	@apply text-greenx border-greenx bg-greenx
+	@apply text-green-500 border-green-500 bg-green-500
 }
 
 /* enter transitions */

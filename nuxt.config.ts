@@ -5,7 +5,7 @@ import app from './app_config'
 export default {
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss'],
-  css: ['/src/assets/css/main.css'],
+
   dir: {
     layouts: './src/layouts',
     pages: './src/pages',
@@ -15,6 +15,8 @@ export default {
     '@/components',
     { path: '@/components/core', extensions: ['vue'] }
   ],
+
+    css: ['@/assets/css/main.css'],
   alias: {
     '@': './src'
   },

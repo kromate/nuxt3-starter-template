@@ -23,7 +23,7 @@ export const useSignin = () => {
       if (!hasProfile) await router.push('/auth/profile')
       const redirectUrl = useUser().redirectUrl.value
       useUser().redirectUrl.value = null
-      await router.push(redirectUrl ?? '/main/business')
+      await router.push(redirectUrl ?? '/dashboard')
 
       loading.value = false
     } catch (err) {

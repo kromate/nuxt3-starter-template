@@ -16,7 +16,7 @@
 				<div v-if="modalType == 'popup'" :class="[isFullHeight? `isFullHeight ${computedWidth}`:'isNotFullHeight','modal']">
 					<header class="modal-title flex justify-between w-full items-center">
 						<span :class="[noClose?'text-center w-full':'text-start', 'text-xl md:text-2xl']">{{ title }}</span>
-						<icon
+						<X
 							v-if="!noClose"
 							name="close"
 							class="text-dark w-7 cursor-pointer  border-[1.5px] border-dark rounded-md"
@@ -43,8 +43,9 @@
 </template>
 
 <script lang="ts" setup>
-import gsap from 'gsap'
+
 import { PropType } from 'vue'
+import { X } from 'lucide-vue-next'
 import { modal } from '@/composables/core/modals'
 import { modalType, closeModalType, closeAllExtremes } from '@/composables/core/modal'
 

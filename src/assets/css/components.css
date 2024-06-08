@@ -1,0 +1,99 @@
+:root {
+    --border: 1.5px;
+}
+
+@layer components {
+    .transite {
+        @apply transition-all duration-75 md:duration-150 ease-linear;
+    }
+
+    .field {
+        @apply flex flex-col w-full items-start;
+    }
+
+    label,
+    .label {
+        @apply font-medium text-base text-dark mb-1 flex gap-2;
+    }
+
+    .input {
+        border-width: var(--border);
+        @apply w-full bg-transparent text-dark h-12 px-4 rounded-md outline-none  border-dark focus:shadow transition-all duration-200 ease-in;
+    }
+
+    .input-field {
+        @apply input;
+    }
+
+    .input-select {
+        @apply input;
+    }
+
+    .input-textarea {
+        @apply input py-4 h-auto;
+    }
+
+    .main-layout {
+        @apply container flex justify-center items-center min-h-screen py-12 px-2.5;
+    }
+
+    .auth-box {
+        @apply w-[450px] mx-auto relative max-w-[100%] bg-light px-9 py-7 flex flex-col items-center gap-4  rounded-md border;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .auth-title {
+        @apply font-light text-2xl text-center flex w-full items-center justify-center relative text-dark;
+    }
+
+    .auth-form {
+        @apply flex flex-col gap-4 overflow-y-auto w-full items-center;
+    }
+
+        .btn_flat {
+        border-width: var(--border);
+        @apply rounded-md px-4 py-[11px] flex justify-center items-center font-medium disabled:bg-gray-400 disabled:text-dark disabled:cursor-not-allowed box-border   hover:shadow-sm transite;
+    }
+
+    .menu-btn {
+        @apply flex items-center justify-center font-semibold border-2 border-dark text-dark hover:scale-105 duration-200 w-[190px] h-11 px-6 text-base rounded-md;
+
+        &:hover {
+            @apply bg-dark text-light;
+        }
+    }
+
+    .form-height {
+        @apply md:h-auto overflow-y-auto;
+    }
+    .center{
+        @apply flex justify-center items-center
+    }
+
+    .bg-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100vw;
+        max-width: 100vw;
+        min-height: 100%;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(1.5px);
+    }
+
+
+
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+    @apply bg-[#e3e3e352];
+}

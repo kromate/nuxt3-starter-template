@@ -57,7 +57,7 @@ export const usePasswordlessSignin = () => {
 
 			const redirectUrl = useUser().redirectUrl.value
 			useUser().redirectUrl.value = null
-			await useRouter().push(redirectUrl ?? '/main/business')
+			await useRouter().push(redirectUrl ?? '/dashboard')
 
 
 			loading.value = false
