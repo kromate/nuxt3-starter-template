@@ -4,7 +4,7 @@ import app from './app_config'
 
 export default {
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss'],
 
   dir: {
     layouts: './src/layouts',
