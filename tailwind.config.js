@@ -17,7 +17,7 @@ module.exports = {
 		extend: {
 			colors: {
 				primary: 'var(--primary)',
-				secondary: 'var(--secondary)',
+				secondary: 'var(--secondary)'
 			}
 		}
 	},

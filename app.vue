@@ -9,7 +9,7 @@
 </template>
 
 <script lang='ts' setup>
-import { useOnline } from '@vueuse/core'
+import { useOnline } from '@vueuse/core/index'
 
 
 

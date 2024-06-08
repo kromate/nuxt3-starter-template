@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import eslintPlugin from 'vite-plugin-eslint'
+import app from './app_config'
 
 export default {
   devtools: { enabled: true },
@@ -20,12 +21,13 @@ export default {
   vite: {
 
     plugins: [
-      eslintPlugin({ useEslintrc: true, exclude: ['**/node_modules/**', 'src/components/core/DateInput/diste/**/*'] })
+      eslintPlugin({ useEslintrc: true, exclude: ['**/node_modules/**'] })
     ],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     }
-  }
+  },
+  app
 }

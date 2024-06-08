@@ -19,7 +19,7 @@ A feature-rich Nuxt 3 starter template that integrates Firebase for backend func
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/nuxt3-starter-template.git
+    git clone https://github.com/kromate/nuxt3-starter-template.git
     cd nuxt3-starter-template
     ```
 

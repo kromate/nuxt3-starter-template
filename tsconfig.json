@@ -1,9 +1,18 @@
 {
 	"compilerOptions": {
+		"baseUrl": "./",
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		},
 		"moduleResolution": "node",
-		"lib": ["ESNext", "WebWorker", "DOM"],
+		"lib": [
+			"ESNext",
+			"WebWorker",
+			"DOM"
+		],
 		"noImplicitAny": false,
 	},
-
 	"extends": "./.nuxt/tsconfig.json"
 }

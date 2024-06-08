@@ -11,7 +11,7 @@
 
 
 							<h1 class="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-								Less Set Up, <br> More Coding
+								Less Set-Up, <br> More Shipping
 							</h1>
 							<p class="mt-6 text-xl leading-8 text-gray-600">
 								A modern, feature-rich starter template for Nuxt 3 projects, integrating
