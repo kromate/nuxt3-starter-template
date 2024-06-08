@@ -7,7 +7,9 @@ export default <RouterOptions>{
     const { ssrContext } = useNuxtApp()
     const subdomain = useSubdomain()
     if (ssrContext?.event.context.subdomain) subdomain.value = ssrContext?.event.context.subdomain
-if (subdomain.value) return
+    // REMOVE THIS LINE FOR SUB-DOMAINS TO WORK
+    if (subdomain.value) return
+
     if (subdomain.value) {
       const templateRoute = _routes.filter((i) => i.path.includes('/template/:siteId'))
 console.log(templateRoute)
