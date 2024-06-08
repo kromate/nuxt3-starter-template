@@ -1,6 +1,6 @@
 <template>
 	<div class="auth-box btn_shadow border border-dark">
-		<icon name="check" class="w-14" />
+		<CircleCheck :size="56" />
 		<h1 class="flex flex-col items-center text-dark text-xl font-bold">
 			<span>A Link has been sent to </span>
 			<span class="text-secondary">{{ email }}</span>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-
+import { CircleCheck } from 'lucide-vue-next'
 const email = useRoute().query.email
 
 definePageMeta({

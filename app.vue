@@ -11,8 +11,6 @@
 <script lang='ts' setup>
 import { useOnline } from '@vueuse/core/index'
 
-
-
 const online = useOnline()
 
 

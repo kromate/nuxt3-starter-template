@@ -28,7 +28,7 @@
 			<div class="border-line border-b h-1 flex-1" />
 		</div>
 		<button class="btn_flat w-full bg-dark text-light" :disabled="loading" @click="googleSignin()">
-			<span v-if="!loading" class="flex items-center gap-3"> <icon name="google" class="w-4" /> 	Sign up with Google</span>
+			<span v-if="!loading" class="flex items-center gap-3"> 	Sign up with Google</span>
 			<Spinner v-else />
 		</button>
 

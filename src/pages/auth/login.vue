@@ -28,7 +28,7 @@
 			<div class="border-line border-b h-1 flex-1" />
 		</div>
 		<button class="btn_flat w-full bg-dark text-light" :disabled="loading" @click="googleSignin()">
-			<span v-if="!loading" class="flex items-center gap-3"> <icon name="google" class="w-4" /> 	Sign in with Google</span>
+			<span v-if="!loading" class="flex items-center gap-3"> 	Sign in with Google</span>
 			<Spinner v-else />
 		</button>
 
@@ -41,8 +41,11 @@
 </template>
 
 <script setup lang="ts">
+import { LucideAArrowUp } from 'lucide-vue-next'
 import { useSignin } from '@/composables/auth/auth'
 import { usePasswordlessSignin } from '@/composables/auth/passwordless'
+
+LucideAArrowUp
 
 const { googleSignin, loading } = useSignin()
 const { credentienals, loading: passwordlessLoginLoading, disabled, send_email } = usePasswordlessSignin()

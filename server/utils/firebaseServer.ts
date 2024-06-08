@@ -1,11 +1,11 @@
 import { initializeApp, getApps, cert, getApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
-import { comfig_keys } from './_keys'
+import { configs } from './_keys'
 
 
 
 
-const configs = import.meta.env.MODE === 'prod' ? comfig_keys.configs_prod : comfig_keys.configs_dev
+
 
 
 export default function firebaseServer() {

@@ -1,17 +1,18 @@
 
 <template>
-	<div class="relative overflow-hidden  w-full  shadow-xl  p-4 py-5 rounded-md box border-[1.5px]  bg-light" :class="[`border-${COLOR}`]">
-		<div :style="`width:${BORDER_WIDTH}%`" :class="[`bg-${COLOR} h-1  absolute  bottom-0 left-0 transite transition-all !duration-[80ms]`]" />
+	<div class="relative overflow-hidden  w-full  shadow-xl  p-4 py-5 rounded-md box border-[1.5px]  bg-light" :style="`border-color:${COLOR}`">
+		<div :style="`width:${BORDER_WIDTH}%`" :class="[`h-1  absolute  bottom-0 left-0 transite transition-all !duration-[80ms]`]" />
 		<span @click="$emit('closeAlert', id)">
-			<X
+			<CircleX
 				name="close"
-				class="text-dark w-5 absolute  right-2 top-2 cursor-pointer  border-[1.5px] border-dark  rounded-md"
+				class="text-dark w-5 absolute  right-2 top-2 cursor-pointer rounded-md"
+				:color="COLOR"
 			/>
 
 		</span>
 
 		<div class="flex items-center pr-12 gap-3">
-			<Icon :name="ICON" :class="[`text-${COLOR} w-7`]" />
+			<Component :is="ICON" :color="COLOR" />
 
 			<div>
 				<p class="text-semibold text-dark">
@@ -26,8 +27,10 @@
 </template>
 
 <script lang="ts" setup>
-import { X } from 'lucide-vue-next'
+import { TriangleAlert, CircleX, CircleCheck, Info } from 'lucide-vue-next'
 import { is_dev } from '@/composables/utils/system'
+
+
 
 const emit = defineEmits(['closeAlert'])
 
@@ -81,11 +84,11 @@ const ICON = computed({
 	get: () => {
 		switch (props.type) {
 			case 'ERROR':
-				return 'error'
+				return TriangleAlert
 			case 'SUCCESS':
-				return 'check'
+				return CircleCheck
 			default:
-				return 'info'
+				return Info
 		}
 	},
 	set: () => {}
@@ -97,9 +100,9 @@ const COLOR = computed({
 				case 'ERROR':
 					return 'red'
 				case 'SUCCESS':
-					return 'greenx'
+					return 'green'
 				default:
-					return 'dark'
+					return 'black'
 			}
 		},
 		set: () => {}
