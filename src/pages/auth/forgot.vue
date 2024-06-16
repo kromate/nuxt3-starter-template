@@ -1,6 +1,6 @@
 <template>
 	<div class="auth-box">
-		<img src="@/assets/images/main/c_shop.svg" alt="logo" width="90" height="90">
+		<!-- <img src="@/assets/images/main/c_shop.svg" alt="logo" width="90" height="90"> -->
 		<h1 class="auth-title">
 			Hi there
 		</h1>
@@ -70,10 +70,5 @@ definePageMeta({
 </script>
 
 <style scoped>
-.display_panel{
-	background-image: url('@/assets/images/main/panel.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-}
+
 </style>
