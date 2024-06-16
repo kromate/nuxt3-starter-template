@@ -1,34 +1,70 @@
 <template>
 	<div class="auth-box">
+		<img src="@/assets/images/main/c_shop.svg" alt="logo" width="90" height="90">
 		<h1 class="auth-title">
 			Welcome Home
 		</h1>
-		<p class="text-2xl text-dark text-center font-semibold  tracking-wide">
+		<p class="text-2xl text-dark text-center font-semibold  tracking-wide -mt-3">
 			Login to your account
 		</p>
-		<form class="auth-form" @submit.prevent="send_email()">
+		<AuthTabs v-model="authType" />
+
+		<form v-if="authType=== 'email'" class="auth-form" @submit.prevent="signIn()">
 			<div class="field">
+				<label for="email">Email Address</label>
 				<input
 					id="email"
-					v-model="credentienals.email.value"
+					v-model="authCredentienalsForm.email.value"
 					placeholder="Enter a valid Email address"
 					type="email"
 					class="input-field"
+					autocomplete="off"
 					required
 				>
 			</div>
-			<button class="btn-primary_flat w-full mt-2" :disabled="passwordlessLoginLoading || disabled" type="submit">
-				<span v-if="!passwordlessLoginLoading"> 	Send link to email</span>
+			<div class="field relative">
+				<section class="flex w-full justify-between">
+					<label for="password">Password</label>
+					<button class="font-medium text-primary underline disabled:text-grey_four disabled:cursor-not-allowed text-sm" :disabled="authCredentienalsForm.loading.value || valid_email" type="button" @click="send_email">
+						login with email link
+					</button>
+				</section>
+
+				<input
+					id="passowrd"
+					v-model="authCredentienalsForm.passord.value"
+					autocomplete="off"
+					placeholder="Enter password"
+					:type="showPassword ? 'text' : 'Password'"
+					class="input-field"
+					required
+				>
+				<icon name="eye" class="w-6 absolute top-[53%] right-4" @click="toggleShow" />
+			</div>
+			<div class="flex justify-between items-center text-xs w-full">
+				<label for="remember" class="mb-0">
+					<input id="remember" type="checkbox">
+					<span class="text-grey6">Remember me</span>
+				</label>
+
+				<nuxt-link to="/auth/forgot" class="text-primary underline font-medium">
+					Forgot Password?
+				</nuxt-link>
+			</div>
+			<button class="btn-primary_flat w-full mt-2" :disabled="authCredentienalsForm.loading.value || disabled" type="submit">
+				<span v-if="!authCredentienalsForm.loading.value">Login</span>
 				<Spinner v-else />
 			</button>
 		</form>
+		<AuthPhoneForm v-else />
+
 		<div class="flex justify-between items-center gap-2 my-2 w-full">
 			<div class="border-line border-b h-1 flex-1" />
 			<span class="text-dark leading-none font-bold">OR</span>
 			<div class="border-line border-b h-1 flex-1" />
 		</div>
-		<button class="btn_flat w-full bg-dark text-light" :disabled="loading" @click="googleSignin()">
-			<span v-if="!loading" class="flex items-center gap-3"> 	Sign in with Google</span>
+		<button class="btn_flat w-full bg-dark text-light" :disabled="loading" type="button" @click="googleSignin()">
+			<span v-if="!loading" class="flex items-center gap-3"> <icon name="google" class="w-4" /> 	Continue with Google</span>
 			<Spinner v-else />
 		</button>
 
@@ -41,15 +77,21 @@
 </template>
 
 <script setup lang="ts">
-import { LucideAArrowUp } from 'lucide-vue-next'
-import { useSignin } from '@/composables/auth/auth'
+import { useSignin, authCredentienalsForm } from '@/composables/auth/auth'
 import { usePasswordlessSignin } from '@/composables/auth/passwordless'
+import { useEmailAndPassword } from '@/composables/auth/email_password'
 
-LucideAArrowUp
+
+
+const authType = ref('email')
 
 const { googleSignin, loading } = useSignin()
-const { credentienals, loading: passwordlessLoginLoading, disabled, send_email } = usePasswordlessSignin()
+const { disabled, send_email, valid_email } = usePasswordlessSignin()
 
+const { signIn } = useEmailAndPassword()
+
+const showPassword = ref(false)
+const toggleShow = () => showPassword.value = !showPassword.value
 
 definePageMeta({
 	layout: 'auth',
@@ -57,4 +99,12 @@ definePageMeta({
 })
 </script>
 
+<style scoped>
+.display_panel{
+	background-image: url('@/assets/images/main/panel.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
 
+</style>

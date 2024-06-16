@@ -1,4 +1,5 @@
 import { User } from '@firebase/auth'
+import { ProfileType } from './types/profile'
 import { getSingleFirestoreDocument } from '@/firebase/firestore/fetch'
 
 
@@ -38,7 +39,7 @@ export const useUser = () => {
         }
 
         return null
-    }) as Ref<Record<string, any> | null>
+    }) as Ref<ProfileType | null>
 
     const isLoggedIn = computed(() => { return !!user.value })
     const username = computed(() => { return userProfile.value ? userProfile.value.username : null })

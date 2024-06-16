@@ -1,8 +1,58 @@
 :root {
     --primary: #4f1ded;
     --secondary: #000000;
-    --dark: #000000;
+    --secondaryLight: #ccc2ef;
+    --light_primary: #c4c4d0;
+    --faded_primary: #03030321;
+    --blue: #554a27;
+    --red: #f02d3a;
     --light: #ffffff;
-
+    --dark: #000000;
+    --light_grey: #a4a4a4;
+    --grey: #f4f7fa;
+    --grey_two: #2b2b38;
+    --grey_four: #aaaaaf;
+    --soft_purple: #b5afff;
+    --baby_purple: #766cff;
+    --dark_purple: #0e0ba1;
+    --line: #737882c9;
+    --hover: #e5e7ebb2;
+    --greenx: #28a737;
 }
 
+/* [theme='light'] {
+    --primary: #000000;
+    --secondary: #4f1ded;
+    --secondaryLight: #ccc2ef;
+    --light_primary: #c4c4d0;
+    --faded_primary: #03030321;
+    --blue: #554a27;
+    --red: #f02d3ace;
+    --light: #ffffff;
+    --dark: #000000;
+    --grey: #f4f7fa;
+    --grey_two: #2b2b38bb;
+    --grey_four: #aaaaaf;
+    --line: #737882c9;
+    --hover: #e0dcedb2;
+    --greenx: #28a737;
+} */
+
+/* Dark mode for root variable  */
+/* [theme='dark'] {
+    --primary: #ffffff;
+    --secondary: #b38ce5;
+    --secondaryLight: #a897e6;
+    --light_primary: #1e1e2d;
+    --faded_primary: #ffffff21;
+    --blue: #26507f;
+    --red: #ff464fba;
+    --light: #1e1e2d;
+    --dark: #d8d8e6;
+    --grey: #18181f;
+    --grey_two: #9999a6;
+    --grey_four: #4c4c56;
+    --line: #737882c9;
+    --hover: #3b2d6b7b;
+    --greenx: #28a737;
+} */

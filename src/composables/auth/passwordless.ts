@@ -1,36 +1,43 @@
 import { sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink, User } from 'firebase/auth'
+import { useAuthModal } from '../core/modals'
+import { authCredentienalsForm } from './auth'
 import { useUser } from '@/composables/auth/user'
-import { authRef } from '@/firebase/auth'
-import { useAlert } from '@/composables/core/notification'
+import { authRef } from '~~/src/firebase/auth'
+import { useAlert } from '~~/src/composables/core/notification'
+
+
+
 
 export const usePasswordlessSignin = () => {
 	const actionCodeSettings = {
 		url: process.client ? `https://${location.host}/auth/authenticate` : '',
 		handleCodeInApp: true
 	}
-	const loading = ref(false)
-	const credentienals = {
-		email: ref('')
-	}
 
 	const _email = useCookie('emailForSignIn')
 
 	const disabled = computed(() => {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		return !emailRegex.test(credentienals.email.value)
+		return !emailRegex.test(authCredentienalsForm.email.value) || authCredentienalsForm.passord.value.length < 3
 	})
+
+	const valid_email = computed(() => {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+		return !emailRegex.test(authCredentienalsForm.email.value)
+	})
+
 	const send_email = async () => {
-		loading.value = true
+		authCredentienalsForm.loading.value = true
 		try {
-			await sendSignInLinkToEmail(authRef, credentienals.email.value, actionCodeSettings)
+			await sendSignInLinkToEmail(authRef, authCredentienalsForm.email.value, actionCodeSettings)
 
-			_email.value = credentienals.email.value
+			_email.value = authCredentienalsForm.email.value
 
-			useRouter().push(`/auth/sentEmail/?email=${credentienals.email.value}`)
+			useRouter().push(`/auth/sentEmail/?email=${authCredentienalsForm.email.value}`)
 		} catch (e: any) {
 			useAlert().openAlert({ type: 'ERROR', msg: e.message })
 		}
-		loading.value = false
+		authCredentienalsForm.loading.value = false
     }
 
 	const initAuth = () => {
@@ -40,7 +47,7 @@ export const usePasswordlessSignin = () => {
     }
 
     const useSignInWithEmailLink = async (email: string) => {
-        loading.value = true
+        authCredentienalsForm.loading.value = true
 		try {
 			const href = process.client ? window.location.href : ''
 			const result = await signInWithEmailLink(authRef, email, href)
@@ -57,14 +64,14 @@ export const usePasswordlessSignin = () => {
 
 			const redirectUrl = useUser().redirectUrl.value
 			useUser().redirectUrl.value = null
-			await useRouter().push(redirectUrl ?? '/dashboard')
+			await useRouter().push(redirectUrl ?? '/main/business')
+			useAuthModal().closeAll()
 
-
-			loading.value = false
+			authCredentienalsForm.loading.value = false
         } catch (e: any) {
             useAlert().openAlert({ type: 'ERROR', msg: e.message })
         }
     }
 
-	return { credentienals, loading, disabled, send_email, initAuth, _email, useSignInWithEmailLink }
+	return { disabled, send_email, initAuth, _email, useSignInWithEmailLink, valid_email }
 }

@@ -1,6 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
-		'./src/**/*.{js,vue,ts}',
+		'./src/components/**/*.{js,vue,ts}',
 		'./src/layouts/**/*.vue',
 		'./src/pages/**/*.vue'
 	],
@@ -18,8 +19,23 @@ module.exports = {
 			colors: {
 				primary: 'var(--primary)',
 				secondary: 'var(--secondary)',
+				secondaryLight: 'var(--secondaryLight)',
+				light_primary: 'var(--light_primary)',
+				faded_primary: 'var(--faded_primary)',
+				blue: 'var(--blue)',
+				red: 'var(--red)',
+				greenx: 'var(--greenx)',
+				grey: 'var(--grey)',
+				light_grey: 'var(--light_grey)',
+				grey_two: 'var(--grey_two)',
+				grey_four: 'var(--grey_four)',
+				soft_purple: 'var(--soft_purple)',
+				baby_purple: 'var(--baby_purple)',
+				dark_purple: 'var(--dark_purple)',
 				light: 'var(--light)',
-				dark: 'var(--dark)'
+				dark: 'var(--dark)',
+				line: 'var(--line)',
+				hover: 'var(--hover)'
 			}
 		}
 	},
