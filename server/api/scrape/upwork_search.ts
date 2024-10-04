@@ -1,7 +1,6 @@
 import { defineEventHandler, getQuery } from 'h3'
-import puppeteer from 'puppeteer'
-
-
+import axios from 'axios'
+import * as cheerio from 'cheerio'
 
 export default defineEventHandler(async (event) => {
     console.log('scraping');
@@ -9,31 +8,26 @@ export default defineEventHandler(async (event) => {
   const searchTerm = query.q ? encodeURIComponent(query.q as string) : 'seo%20expert'
 
   try {
-    const browser = await puppeteer.launch({ headless: true })
-    const page = await browser.newPage()
-    await page.goto(`https://www.upwork.com/nx/search/jobs/?q=${searchTerm}`, { waitUntil: 'networkidle0' })
+    const response = await axios.get(`https://www.upwork.com/nx/search/jobs/?q=${searchTerm}`, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      }
+    })
 
-      
-      const jobs = await page.evaluate(() => {
-          const jobElements = document.querySelectorAll("article.job-tile")
-          console.log(jobElements);
-          return Array.from(jobElements).map((element) => {
-              return {
-                  title: element.querySelector(".up-n-link")?.textContent?.trim() || '',
-                  description: element.querySelector('[data-test="UpCLineClamp JobDescription"]')?.textContent?.trim() || '',
-                  link: (element.querySelector('[data-test="job-tile-title-link"]') as HTMLAnchorElement)?.href || '',
-                  duration: element.querySelector('[data-test="duration-label"]')?.textContent?.trim() || '',
-                  experience: element.querySelector('[data-test="experience-level"]')?.textContent?.trim() || '',
-                  hourlyRate: element.querySelector('[data-test="job-type-label"]')?.textContent?.trim() || '',
-                  tags: Array.from(element.querySelectorAll('[data-test="token"]')).map(tag => tag.textContent?.trim()) || [],
-                  postedTime: element.querySelector('[data-test="job-pubilshed-date"]')?.textContent?.trim() || '',
-            }
-          })
-      })
-
-
-
-    await browser.close()
+    const $ = cheerio.load(response.data)
+    
+    const jobs = $("article.job-tile").map((_, element) => {
+      return {
+        title: $(element).find(".up-n-link").text().trim(),
+        description: $(element).find('[data-test="UpCLineClamp JobDescription"]').text().trim(),
+        link: $(element).find('[data-test="job-tile-title-link"]').attr('href'),
+        duration: $(element).find('[data-test="duration-label"]').text().trim(),
+        experience: $(element).find('[data-test="experience-level"]').text().trim(),
+        hourlyRate: $(element).find('[data-test="job-type-label"]').text().trim(),
+        tags: $(element).find('[data-test="token"]').map((_, tag) => $(tag).text().trim()).get(),
+        postedTime: $(element).find('[data-test="job-pubilshed-date"]').text().trim(),
+      }
+    }).get()
 
     return {
       success: true,

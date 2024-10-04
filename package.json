@@ -14,6 +14,7 @@
     "deploy": "firebase deploy --only functions"
   },
   "dependencies": {
+    "@sparticuz/chromium-min": "^127.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.7",
     "@vueuse/core": "^10.7.0",
