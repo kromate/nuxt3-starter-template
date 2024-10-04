@@ -1,39 +1,18 @@
-import { defineEventHandler } from 'h3'
+import { defineEventHandler, getQuery } from 'h3'
 import puppeteer from 'puppeteer'
 
-// interface Job {
-//   title: string
-//   link: string
-//   description: string
-//   budget: string
-//   postedTime: string
-// }
+
 
 export default defineEventHandler(async (event) => {
     console.log('scraping');
+  const query = getQuery(event)
+  const searchTerm = query.q ? encodeURIComponent(query.q as string) : 'seo%20expert'
+
   try {
     const browser = await puppeteer.launch({ headless: true })
     const page = await browser.newPage()
-    await page.goto('https://www.upwork.com/nx/search/jobs/?q=seo%20expert', { waitUntil: 'networkidle0' })
+    await page.goto(`https://www.upwork.com/nx/search/jobs/?q=${searchTerm}`, { waitUntil: 'networkidle0' })
 
-    // const jobs: Job[] = await page.evaluate(() => {
-    //     const jobElements = document.querySelectorAll('section[data-test="job-tile"]')
-    //     console.log(jobElements);
-    //   return Array.from(jobElements).map((element) => {
-    //     const titleElement = element.querySelector('h3 a')
-    //     const descriptionElement = element.querySelector('[data-test="job-description"]')
-    //     const budgetElement = element.querySelector('[data-test="budget"]')
-    //     const postedTimeElement = element.querySelector('[data-test="posted-on"]')
-
-    //     return {
-    //       title: titleElement?.textContent?.trim() || '',
-    //       link: (titleElement as HTMLAnchorElement)?.href || '',
-    //       description: descriptionElement?.textContent?.trim() || '',
-    //       budget: budgetElement?.textContent?.trim() || 'Not specified',
-    //       postedTime: postedTimeElement?.textContent?.trim() || '',
-    //     }
-    //   })
-      // })
       
       const jobs = await page.evaluate(() => {
           const jobElements = document.querySelectorAll("article.job-tile")
